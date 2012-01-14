@@ -1,0 +1,6 @@
+.metadata/
+sharpen.builder/bin/
+sharpen.core/bin/
+sharpen.ui.tests/bin-testcases/
+sharpen.ui.tests/bin/
+sharpen.ui/bin/
