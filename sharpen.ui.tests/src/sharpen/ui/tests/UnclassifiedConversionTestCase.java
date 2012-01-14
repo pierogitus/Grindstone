@@ -400,5 +400,9 @@ public class UnclassifiedConversionTestCase extends AbstractConversionTestCase {
 	public void testFieldMapping() throws Throwable {
 	    runResourceTestCase("FieldMapping");
 	}
+	
+	public void testAssert() throws Throwable {
+		runResourceTestCase("Assert");
+	}
 }
 

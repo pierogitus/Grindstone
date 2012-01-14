@@ -1,0 +1,6 @@
+public class Assert {
+	public static void run(int i) {
+		assert i == 1;
+		assert i == 2 : "bad number: " + i;
+	}
+}
