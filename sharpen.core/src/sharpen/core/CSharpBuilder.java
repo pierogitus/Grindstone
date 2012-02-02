@@ -954,7 +954,7 @@ public class CSharpBuilder extends ASTVisitor {
 			return createTagNode("returns", element);
 		} else if (TagElement.TAG_LINK.equals(tagName)) {
 			return mapTagLink(element);
-		} else if (TagElement.TAG_THROWS.equals(tagName)) {
+		} else if (TagElement.TAG_THROWS.equals(tagName) || TagElement.TAG_EXCEPTION.equals(tagName)) {
 			return mapTagThrows(element);
 		} else if (TagElement.TAG_SEE.equals(tagName)) {
 			return mapTagWithCRef("seealso", element);
@@ -1097,6 +1097,8 @@ public class CSharpBuilder extends ASTVisitor {
 			return mapTagElement((TagElement) node);
 		case ASTNode.TEXT_ELEMENT:
 			return mapTextElement((TextElement) node);
+		case ASTNode.QUALIFIED_NAME:
+			return new CSDocTextNode(((QualifiedName)node).getFullyQualifiedName());
 		}
 		warning(node, "Documentation node not supported: " + node.getClass() + ": " + node);
 		return new CSDocTextNode(node.toString());
