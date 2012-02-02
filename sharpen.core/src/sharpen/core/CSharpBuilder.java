@@ -152,9 +152,17 @@ public class CSharpBuilder extends ASTVisitor {
 	}
 
 	public boolean visit(EnumDeclaration node) {
-		if (!SharpenAnnotations.hasIgnoreAnnotation(node)) {
-			notImplemented(node);
+		if (SharpenAnnotations.hasIgnoreAnnotation(node)) {
+			return false;
 		}
+		final CSEnum theEnum = new CSEnum(node.getName().getIdentifier());
+		mapVisibility(node, theEnum);
+		mapJavadoc(node, theEnum);
+		addType(theEnum);
+		for(Object o : node.enumConstants()){
+			theEnum.addValue(((EnumConstantDeclaration)o).getName().getIdentifier());
+		}
+		//throw new IllegalStateException(((EnumConstantDeclaration)node.enumConstants().get(0)).getAnonymousClassDeclaration().toString());
 		return false;
 	}
 

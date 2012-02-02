@@ -404,5 +404,9 @@ public class UnclassifiedConversionTestCase extends AbstractConversionTestCase {
 	public void testAssert() throws Throwable {
 		runResourceTestCase("Assert");
 	}
+	
+	public void testEnum() throws Throwable {
+		runResourceTestCase("Enum2");
+	}
 }
 

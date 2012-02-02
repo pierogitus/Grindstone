@@ -1,0 +1,6 @@
+public enum Enum2
+{
+	MUST,
+	SHOULD,
+	MUST_NOT
+}
