@@ -1099,6 +1099,8 @@ public class CSharpBuilder extends ASTVisitor {
 			return mapTextElement((TextElement) node);
 		case ASTNode.QUALIFIED_NAME:
 			return new CSDocTextNode(((QualifiedName)node).getFullyQualifiedName());
+		case ASTNode.MEMBER_REF:
+			return new CSDocTextNode(((MemberRef)node).getName().getIdentifier());
 		}
 		warning(node, "Documentation node not supported: " + node.getClass() + ": " + node);
 		return new CSDocTextNode(node.toString());
