@@ -205,7 +205,8 @@ public class CSharpBuilder extends ASTVisitor {
 	}
 
 	public boolean visit(SuperFieldAccess node) {
-		notImplemented(node);
+		CSExpression target = new CSMemberReferenceExpression(new CSBaseExpression(), node.getName().getIdentifier());
+		pushExpression(target);
 		return false;
 	}
 

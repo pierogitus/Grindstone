@@ -4,6 +4,8 @@ internal class Super1Base
 	{
 		return "Base.foo";
 	}
+
+	protected string nr = "field";
 }
 
 internal class Super1Derived : Super1Base
@@ -11,6 +13,6 @@ internal class Super1Derived : Super1Base
 	public override string foo()
 	{
 		string superFoo = base.foo();
-		return superFoo + "(Derived)";
+		return superFoo + "(Derived)" + base.nr;
 	}
 }
