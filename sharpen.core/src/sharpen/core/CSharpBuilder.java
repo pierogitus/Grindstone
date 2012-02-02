@@ -978,7 +978,7 @@ public class CSharpBuilder extends ASTVisitor {
 		final ASTNode linkTarget = (ASTNode) fragments.get(0);
 		String cref = mapCRefTarget(linkTarget);
 		if (null == cref) {
-			return invalidTagWithCRef(linkTarget, tagName, element);
+			return createTagNode(tagName, element);
 		}
 		CSDocTagNode node = newTagWithCRef(tagName, cref);
 		if (fragments.size() > 1) {

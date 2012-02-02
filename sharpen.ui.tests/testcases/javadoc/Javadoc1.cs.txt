@@ -40,6 +40,7 @@ namespace javadoc
 		/// <exception cref="System.IO.IOException">if any I/O-Error occurs</exception>
 		/// <seealso cref="int.MaxValue">int.MaxValue</seealso>
 		/// <seealso><a href="http://a-valid-url.com/resource">Ancor Text</a></seealso>
+		/// <seealso>"Subclasses for actual tests"</seealso>
 		public virtual int foo(int bar, object @object)
 		{
 			return 42;
