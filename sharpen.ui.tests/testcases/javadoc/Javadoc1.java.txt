@@ -23,6 +23,8 @@ public abstract class Javadoc1 {
 	 * And also with -{@link #BAR}
 	 * @param bar the bar argument
 	 * @param object the object argument
+	 * @param <T>
+	 *          the type of the {@link Callable} return value
 	 * @return the ultimate answer
 	 * @throws IllegalStateException when things go crazy
 	 * @exception   java.io.IOException  if any I/O-Error occurs

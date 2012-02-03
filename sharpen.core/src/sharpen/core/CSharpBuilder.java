@@ -1031,6 +1031,12 @@ public class CSharpBuilder extends ASTVisitor {
 	private CSDocNode mapTagParam(TagElement element) {
 		
 		List fragments = element.fragments();
+		if(fragments.size() > 1 && fragments.get(0).toString().equals("<")){
+			CSDocTagNode tag = new CSDocTagNode("typeparam");
+			tag.addAttribute("name", fixIdentifierNameFor(fragments.get(1).toString(), element));
+			collectFragments(tag, fragments, 3);
+			return tag;
+		}
 		SimpleName name = (SimpleName) fragments.get(0);
 		if (null == name.resolveBinding()) {
 			warning(name, "Parameter '" + name + "' not found.");
@@ -1099,6 +1105,8 @@ public class CSharpBuilder extends ASTVisitor {
 			return mapTextElement((TextElement) node);
 		case ASTNode.QUALIFIED_NAME:
 			return new CSDocTextNode(((QualifiedName)node).getFullyQualifiedName());
+		case ASTNode.SIMPLE_NAME:
+			return new CSDocTextNode(((SimpleName)node).getIdentifier());
 		case ASTNode.MEMBER_REF:
 			return new CSDocTextNode(((MemberRef)node).getName().getIdentifier());
 		}

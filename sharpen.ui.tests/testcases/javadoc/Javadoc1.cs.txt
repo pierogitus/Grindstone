@@ -35,6 +35,11 @@ namespace javadoc
 		/// </summary>
 		/// <param name="bar">the bar argument</param>
 		/// <param name="object">the object argument</param>
+		/// <typeparam name="T">
+		/// the type of the
+		/// <see cref="Callable">Callable</see>
+		/// return value
+		/// </typeparam>
 		/// <returns>the ultimate answer</returns>
 		/// <exception cref="System.InvalidOperationException">when things go crazy</exception>
 		/// <exception cref="System.IO.IOException">if any I/O-Error occurs</exception>
