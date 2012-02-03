@@ -607,6 +607,12 @@ public class CSharpPrinter extends CSVisitor {
 		write(node.operator());
 		write(" ");
 		node.rhs().accept(this);
+		for(CSExpression x : node.extendedOperands()){
+			write(" ");
+			write(node.operator());
+			write(" ");
+			x.accept(this);
+		}
 	}
 	
 	public void visit(CSPrefixExpression node) {

@@ -2190,17 +2190,14 @@ public class CSharpBuilder extends ASTVisitor {
 			pushExpression(new CSInfixExpression(operator, new CSParenthesizedExpression(left), popExpression()));
 		} else {
 			String operator = node.getOperator().toString();
-			pushExpression(new CSInfixExpression(operator, left, right));
-			pushExtendedOperands(operator, node);
+			CSInfixExpression infix = new CSInfixExpression(operator, left, right);
+			for (Object x : node.extendedOperands()) {
+				infix.addExtendedOperand(mapExpression((Expression) x));
+			}
+			pushExpression(infix);
 		}
 
 		return false;
-	}
-
-	private void pushExtendedOperands(String operator, InfixExpression node) {
-		for (Object x : node.extendedOperands()) {
-			pushExpression(new CSInfixExpression(operator, popExpression(), mapExpression((Expression) x)));
-		}
 	}
 
 	public boolean visit(ParenthesizedExpression node) {

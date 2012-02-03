@@ -21,16 +21,23 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 package sharpen.core.csharp.ast;
 
+import java.util.*;
+
 public class CSInfixExpression extends CSExpression {
 
 	private String _operator;
 	private CSExpression _lhs;
 	private CSExpression _rhs;
+	private List<CSExpression> _extendedOperands = new ArrayList<CSExpression>();
 
 	public CSInfixExpression(String operator, CSExpression lhs, CSExpression rhs) {
 		_operator = operator;
 		_lhs = lhs;
 		_rhs = rhs;
+	}
+	
+	public void addExtendedOperand(CSExpression extendedOperand){
+		_extendedOperands.add(extendedOperand);
 	}
 	
 	public String operator() {
@@ -43,6 +50,10 @@ public class CSInfixExpression extends CSExpression {
 	
 	public CSExpression rhs() {
 		return _rhs;
+	}
+	
+	public List<CSExpression> extendedOperands() {
+		return _extendedOperands;
 	}
 
 	public void accept(CSVisitor visitor) {

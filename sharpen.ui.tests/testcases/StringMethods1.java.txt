@@ -21,6 +21,7 @@ public class StringMethods1 {
 	}
 	
 	private static void print(String s) {
+		String s1 = s + "a" + "b" + "c" + "d";
 	}
 
 }

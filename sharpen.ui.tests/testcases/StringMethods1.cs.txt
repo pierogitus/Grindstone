@@ -37,5 +37,6 @@ public class StringMethods1
 
 	private static void print(string s)
 	{
+		string s1 = s + "a" + "b" + "c" + "d";
 	}
 }
