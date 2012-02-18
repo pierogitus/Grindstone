@@ -41,6 +41,7 @@ public class DefaultConfiguration extends Configuration {
 	    mapType("java.lang.Cloneable", "System.ICloneable");
 	    
 	    mapType("java.util.Date", "System.DateTime");
+	    mapType("java.lang.StringBuilder", "System.Text.StringBuilder");
 	
 	    mapMethod("java.lang.Object.toString", "ToString");
 	    mapMethod("java.lang.Object.hashCode", "GetHashCode");
@@ -227,6 +228,10 @@ public class DefaultConfiguration extends Configuration {
 		mapMethod("java.lang.Boolean.booleanValue", "");
 		mapMethod("java.lang.Float.floatToIntBits", runtimeMethod("floatToIntBits"));
 		mapMethod("java.lang.Float.intBitsToFloat", runtimeMethod("intBitsToFloat"));
+		mapMethod("java.lang.Byte.parseByte", "byte.Parse");
+		mapMethod("java.lang.Short.parseShort", "short.Parse");
+		mapMethod("java.lang.Float.parseFloat", "float.Parse");
+		mapMethod("java.lang.Double.parseDouble", "double.Parse");
     }	
 	
 	public boolean isIgnoredExceptionType(String exceptionType) {

@@ -266,6 +266,7 @@ public abstract class Configuration {
 		mapMethod("java.lang.reflect.Method.getParameterTypes", runtimeMethod("GetParameterTypes"));
 		removeMethod("java.lang.reflect.AccessibleObject.setAccessible");
 		mapType("java.lang.reflect.Constructor", "System.Reflection.ConstructorInfo");
+		mapType("java.text.DecimalFormat", "Sharpen.Text.DecimalFormat");
 		
 		mapMethod("java.lang.String.valueOf", "ToString");
 	}
