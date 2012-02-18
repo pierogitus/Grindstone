@@ -23,6 +23,10 @@ package sharpen.core;
 
 import java.util.*;
 
+import org.eclipse.jdt.core.dom.*;
+
+import sharpen.core.framework.BindingUtils;
+
 public abstract class Configuration {
 
 	public static class MemberMapping {
@@ -64,6 +68,10 @@ public abstract class Configuration {
 		}
 	}
 	
+	public enum ConversionStrategy{
+		RefactorInterfaceWithTypes
+	}
+	
 	private static final WarningHandler NULL_WARNING_HANDLER = new WarningHandler();	
 	
 	private Map<String, String> _typeMappings = new HashMap<String, String>();
@@ -73,6 +81,8 @@ public abstract class Configuration {
 	private Map<String, String> _systemConvertWellKnownTypes = new HashMap<String, String>();
 	
 	private List<NameMapping> _namespaceMappings = new ArrayList<NameMapping>();
+	
+	private Map<ConversionStrategy, List<String>> _strategyScopes = new HashMap<ConversionStrategy, List<String>>();
 	
 	private WarningHandler _warningHandler = Configuration.NULL_WARNING_HANDLER;
 	
@@ -366,6 +376,50 @@ public abstract class Configuration {
 	protected void mapWrapperConstructor(String from, String to, String wellKnownTypeName) {
 		mapMethod(from, to);
 		_systemConvertWellKnownTypes.put(to, wellKnownTypeName);
+	}
+	
+	public void addStrategyScope(ConversionStrategy cs, String qualifiedScope){
+		if(_strategyScopes.containsKey(cs)){
+			_strategyScopes.get(cs).add(qualifiedScope);
+		}
+		else{
+			List<String> list = new ArrayList<String>();
+			list.add(qualifiedScope);
+			_strategyScopes.put(cs, list);
+		}
+	}
+	
+	public boolean shouldApplyConversionStrategy(ConversionStrategy cs, ASTNode node){
+		if(!_strategyScopes.containsKey(cs)){
+			return false;
+		}
+		List<String> scopes = _strategyScopes.get(cs);
+		if(scopes.contains("*")){
+			return true;
+		}
+		ASTNode currentNode = node;
+		String qualifiedName = "";
+		while(currentNode != null && qualifiedName == ""){
+			if(node instanceof AbstractTypeDeclaration){
+				qualifiedName = BindingUtils.qualifiedName(((AbstractTypeDeclaration)node).resolveBinding());
+			}
+			else if(node instanceof PackageDeclaration){
+				qualifiedName = ((PackageDeclaration)node).resolveBinding().getName();
+			}
+			else if(node instanceof MethodDeclaration){
+				qualifiedName = BindingUtils.qualifiedName(((MethodDeclaration)node).resolveBinding());
+			}
+			else if(node instanceof VariableDeclaration){
+				qualifiedName = BindingUtils.qualifiedName(((VariableDeclaration)node).resolveBinding());
+			}
+			currentNode = currentNode.getParent();
+		}
+		for(String s : scopes){
+			if(qualifiedName.startsWith(s)){
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public boolean nativeInterfaces() {

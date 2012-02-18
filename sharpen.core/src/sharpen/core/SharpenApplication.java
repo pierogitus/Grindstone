@@ -138,6 +138,9 @@ public class SharpenApplication implements IApplication {
 		for (Configuration.NameMapping mapping : _args.typeMappings) {
 			configuration.mapType(mapping.from, mapping.to);
 		}
+		for (SharpenCommandLine.StrategyScope st : _args.strategyScopes) {
+			configuration.addStrategyScope(st.strategy, st.scope);
+		}
 		return configuration;
 	}
 

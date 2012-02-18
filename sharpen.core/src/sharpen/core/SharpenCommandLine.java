@@ -23,6 +23,8 @@ package sharpen.core;
 
 import java.util.*;
 
+import sharpen.core.Configuration.ConversionStrategy;
+
 public class SharpenCommandLine {
 	
 	public static SharpenCommandLine parse(String[] args) {
@@ -51,6 +53,23 @@ public class SharpenCommandLine {
 
 		public abstract NamingStrategy getNamingStrategy();
 	}
+	
+	public static class StrategyScope {
+		public ConversionStrategy strategy;
+		public String scope;
+		
+		public StrategyScope(ConversionStrategy strategy, String scope) {
+			this.strategy = strategy;
+			this.scope = scope;
+		}
+		
+		@Override
+		public boolean equals(Object obj) {
+			if (!(obj instanceof StrategyScope)) return false;
+			StrategyScope other = (StrategyScope)obj;
+			return strategy.equals(other.strategy) && scope.equals(other.scope);
+		}
+	}
 
 	/**
 	 * Name of the runtime class. The runtime class provides implementation for
@@ -78,4 +97,5 @@ public class SharpenCommandLine {
 	public final List<String> eventAddMappings = new ArrayList<String>();
 	public final Map<String, String> conditionalCompilation = new HashMap<String, String>();
 	public String configurationClass;
+	final public List<StrategyScope> strategyScopes = new ArrayList<StrategyScope>();
 }

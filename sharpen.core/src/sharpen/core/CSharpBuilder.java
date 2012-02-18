@@ -661,6 +661,9 @@ public class CSharpBuilder extends ASTVisitor {
 			visit(node.bodyDeclarations());
 			createInheritedAbstractMemberStubs(node);
 			flushInstanceInitializers(type, 0);
+			if(node.isInterface() && _configuration.shouldApplyConversionStrategy(ConversionStrategy.RefactorInterfaceWithTypes, node)){
+				
+			}
 		} finally {
 			_currentType = saved;
 		}

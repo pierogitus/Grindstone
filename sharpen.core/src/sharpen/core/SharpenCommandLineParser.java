@@ -101,6 +101,10 @@ class SharpenCommandLineParser extends CommandLineParser {
 			String from = consumeNext();
 			String to = consumeNext();
 			_cmdLine.memberMappings.put(from, new Configuration.MemberMapping(to, MemberKind.Property));
+		} else if (areEqual(arg, "-strategyScope")) {
+			String strategy = consumeNext();
+			String scope = consumeNext();
+			_cmdLine.strategyScopes.add(new SharpenCommandLine.StrategyScope(Enum.valueOf(Configuration.ConversionStrategy.class, strategy),scope));
 		} else if (areEqual(arg, "-runtimeTypeName")){
 			_cmdLine.runtimeTypeName = consumeNext();
 		} else if (areEqual(arg, "-header")){
