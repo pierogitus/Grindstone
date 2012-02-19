@@ -241,7 +241,13 @@ public class CSharpBuilder extends ASTVisitor {
 
 	private CSAnonymousClassBuilder mapAnonymousClass(AnonymousClassDeclaration node) {
 		CSAnonymousClassBuilder builder = new CSAnonymousClassBuilder(this, node);
-		_currentType.addMember(builder.type());
+		if(_currentType.isInterface() && _configuration.shouldApplyConversionStrategy(ConversionStrategy.RefactorInterfaceWithTypes, my(NameScope.class).currentType())){
+			builder.type().visibility(CSVisibility.Public);
+			_compilationUnit.addType(builder.type());
+		}
+		else{
+			_currentType.addMember(builder.type());
+		}
 		return builder;
 	}
 
@@ -658,12 +664,24 @@ public class CSharpBuilder extends ASTVisitor {
 		CSTypeDeclaration saved = _currentType;
 		_currentType = type;
 		try {
-			visit(node.bodyDeclarations());
+			if(node.isInterface() && _configuration.shouldApplyConversionStrategy(ConversionStrategy.RefactorInterfaceWithTypes, node)){
+				for(Object b : node.bodyDeclarations()){
+					if(b instanceof TypeDeclaration){
+						_currentType = null;
+						visit((TypeDeclaration)b);
+						_currentType = type;
+					}
+					else{
+						((ASTNode)b).accept(this);
+					}
+				}
+			}
+			else{
+				visit(node.bodyDeclarations());
+			}
 			createInheritedAbstractMemberStubs(node);
 			flushInstanceInitializers(type, 0);
-			if(node.isInterface() && _configuration.shouldApplyConversionStrategy(ConversionStrategy.RefactorInterfaceWithTypes, node)){
-				
-			}
+			
 		} finally {
 			_currentType = saved;
 		}

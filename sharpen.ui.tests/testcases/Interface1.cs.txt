@@ -5,4 +5,37 @@ public interface Interface1
 	bool hasNext();
 
 	object next();
+
+	public static readonly ByteParser DEFAULT_BYTE_PARSER = new _ByteParser_10();
+}
+
+public interface ByteParser : Parser
+{
+	byte parseByte(string @string);
+}
+
+public interface Parser
+{
+}
+
+public sealed class _ByteParser_10 : ByteParser
+{
+	public _ByteParser_10()
+	{
+	}
+
+	public byte parseByte(string value)
+	{
+		return byte.Parse(value);
+	}
+
+	protected object readResolve()
+	{
+		return Interface1.DEFAULT_BYTE_PARSER;
+	}
+
+	public override string ToString()
+	{
+		return ".DEFAULT_BYTE_PARSER";
+	}
 }

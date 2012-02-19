@@ -22,6 +22,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 package sharpen.ui.tests;
 
 import sharpen.core.*;
+import sharpen.core.Configuration.ConversionStrategy;
 
 public class UnclassifiedConversionTestCase extends AbstractConversionTestCase {
 	
@@ -294,7 +295,9 @@ public class UnclassifiedConversionTestCase extends AbstractConversionTestCase {
 	}
 	
 	public void testSimpleInterface() throws Throwable {
-		runResourceTestCase("Interface1");
+		Configuration configuration = getConfiguration();
+		configuration.addStrategyScope(ConversionStrategy.RefactorInterfaceWithTypes, "Interface1");
+		runResourceTestCase(configuration, "Interface1");
 	}
 	
 	public void testWhile() throws Throwable {

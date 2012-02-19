@@ -28,7 +28,7 @@ import java.io.Writer;
 
 public class IndentedWriter {
 
-	private static final int MAX_COLUMNS = 80;
+	private static final int MAX_COLUMNS = 100;
 
 	String _lineSeparator = System.getProperty("line.separator");
 

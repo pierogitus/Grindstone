@@ -49,7 +49,11 @@ public class MappingsImpl implements Mappings {
 			}
 		}
 		
-		String mappedTypeName = mappedTypeName(typeMappingKey(type), qualifiedName(type));
+		String qualifiedName = qualifiedName(type);
+		if(type.isNested() && type.getDeclaringClass().isInterface() && _configuration.shouldApplyConversionStrategy(ConversionStrategy.RefactorInterfaceWithTypes, qualifiedName)){
+			qualifiedName = type.getPackage().getName() + "." + type.getName();
+		}
+		String mappedTypeName = mappedTypeName(typeMappingKey(type), qualifiedName);
 		if (shouldPrefixInterface(type)) {
 			return registerMappedType(type, mappedInterfaceName(mappedTypeName, type));
 		}
@@ -165,17 +169,8 @@ public class MappingsImpl implements Mappings {
 	}	
 	
 	private String mappedInterfaceName(String name, ITypeBinding type) {
-		String[] parts = name.split("\\.");
-		ITypeBinding current = type;
-		int i = parts.length - 1;
-		while(current != null && i >= 0){
-			if(current.isInterface()){
-				parts[i] = interfaceName(parts[i]);
-			}
-			i--;
-			current = current.getDeclaringClass();
-		}
-		return join(".", parts);
+		int pos = name.lastIndexOf('.');
+		return name.substring(0, pos) + "." + interfaceName(name.substring(pos + 1));
 	}
 	
 	public String join (String delim, String ... data) {

@@ -391,13 +391,6 @@ public abstract class Configuration {
 	}
 	
 	public boolean shouldApplyConversionStrategy(ConversionStrategy cs, ASTNode node){
-		if(!_strategyScopes.containsKey(cs)){
-			return false;
-		}
-		List<String> scopes = _strategyScopes.get(cs);
-		if(scopes.contains("*")){
-			return true;
-		}
 		ASTNode currentNode = node;
 		String qualifiedName = "";
 		while(currentNode != null && qualifiedName == ""){
@@ -414,6 +407,17 @@ public abstract class Configuration {
 				qualifiedName = BindingUtils.qualifiedName(((VariableDeclaration)node).resolveBinding());
 			}
 			currentNode = currentNode.getParent();
+		}
+		return shouldApplyConversionStrategy(cs, qualifiedName);
+	}
+	
+	public boolean shouldApplyConversionStrategy(ConversionStrategy cs, String qualifiedName){
+		if(!_strategyScopes.containsKey(cs)){
+			return false;
+		}
+		List<String> scopes = _strategyScopes.get(cs);
+		if(scopes.contains(".")){
+			return true;
 		}
 		for(String s : scopes){
 			if(qualifiedName.startsWith(s)){
