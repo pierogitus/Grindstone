@@ -19,8 +19,7 @@ namespace javadoc
 		{
 		}
 
-		[System.ObsoleteAttribute(@"Use DeprecatedAlternatives.methodReference() instead."
-			)]
+		[System.ObsoleteAttribute(@"Use DeprecatedAlternatives.methodReference() instead.")]
 		public virtual void methodReference()
 		{
 		}

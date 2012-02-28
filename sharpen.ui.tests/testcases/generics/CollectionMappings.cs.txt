@@ -8,8 +8,7 @@ namespace generics
 			System.Collections.IList l1 = new System.Collections.ArrayList();
 			unqualified(l1);
 			// qualified gets mapped to System.Collections.Generic
-			System.Collections.Generic.IList<string> l2 = new System.Collections.Generic.List
-				<string>();
+			System.Collections.Generic.IList<string> l2 = new System.Collections.Generic.List<string>();
 			qualified(l2);
 		}
 
@@ -18,8 +17,7 @@ namespace generics
 			System.Collections.IEnumerator i = iterable.GetEnumerator();
 		}
 
-		internal static void qualified(System.Collections.Generic.IEnumerable<string> iterable
-			)
+		internal static void qualified(System.Collections.Generic.IEnumerable<string> iterable)
 		{
 			System.Collections.Collection.IEnumerator<string> i = iterable.GetEnumerator();
 		}

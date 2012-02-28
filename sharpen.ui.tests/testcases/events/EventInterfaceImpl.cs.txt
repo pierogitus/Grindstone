@@ -8,13 +8,13 @@ namespace events
 		{
 			add
 			{
-				_queryStarted = (System.EventHandler<events.QueryEventArgs>)System.Delegate.Combine
-					(_queryStarted, value);
+				_queryStarted = (System.EventHandler<events.QueryEventArgs>)System.Delegate.Combine(_queryStarted, value
+					);
 			}
 			remove
 			{
-				_queryStarted = (System.EventHandler<events.QueryEventArgs>)System.Delegate.Remove
-					(_queryStarted, value);
+				_queryStarted = (System.EventHandler<events.QueryEventArgs>)System.Delegate.Remove(_queryStarted, value
+					);
 			}
 		}
 	}

@@ -6,8 +6,8 @@ namespace generics
 		{
 		}
 
-		public virtual void entry(generics.GenericMethodParameters.Entry<string, int> p1, 
-			generics.GenericMethodParameters.Entry<int, string> p2)
+		public virtual void entry(generics.GenericMethodParameters.Entry<string, int> p1, generics.GenericMethodParameters.Entry
+			<int, string> p2)
 		{
 		}
 	}

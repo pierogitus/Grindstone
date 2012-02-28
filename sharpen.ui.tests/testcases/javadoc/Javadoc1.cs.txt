@@ -21,11 +21,9 @@ namespace javadoc
 
 		/// <summary>
 		/// Link to method with no args specified:
-		/// <see cref="depracatedMethod(string[], string[][])">depracatedMethod(string[], string[][])
-		/// 	</see>
+		/// <see cref="depracatedMethod(string[], string[][])">depracatedMethod(string[], string[][])</see>
 		/// Link to method with args specified   :
-		/// <see cref="depracatedMethod(string[], string[][])">depracatedMethod(string[], string[][])
-		/// 	</see>
+		/// <see cref="depracatedMethod(string[], string[][])">depracatedMethod(string[], string[][])</see>
 		/// Methods should have a summary.
 		/// Multiple lines also allowed.
 		/// Try with -

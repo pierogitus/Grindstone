@@ -10,8 +10,7 @@ namespace events
 		public static void Main(string[] cmdLine)
 		{
 			events.EventRegistry registry = EventRegistry();
-			registry.Foo += new System.EventHandler<events.FooEventArgs>(new _EventListener4_42
-				(cmdLine).OnEvent);
+			registry.Foo += new System.EventHandler<events.FooEventArgs>(new _EventListener4_42(cmdLine).OnEvent);
 		}
 
 		private sealed class _EventListener4_42

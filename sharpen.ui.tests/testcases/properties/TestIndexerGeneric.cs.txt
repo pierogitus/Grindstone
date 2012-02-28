@@ -5,8 +5,7 @@ namespace properties
 		public static void Main(string[] args)
 		{
 			int j = new properties.TestIndexerGeneric<int>()[1];
-			properties.TestIndexerGeneric<string> ti = new properties.TestIndexerGeneric<string
-				>();
+			properties.TestIndexerGeneric<string> ti = new properties.TestIndexerGeneric<string>();
 			string v = ti[4];
 		}
 

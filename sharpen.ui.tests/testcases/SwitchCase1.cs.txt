@@ -25,4 +25,30 @@ public class SwitchCase1
 		}
 		return returnValue;
 	}
+
+	public static int foo(char arg)
+	{
+		int returnValue = -1;
+		switch (arg)
+		{
+			case (char)1:
+			{
+				returnValue = 5;
+				break;
+			}
+
+			case (char)42:
+			{
+				returnValue = 0;
+				break;
+			}
+
+			default:
+			{
+				returnValue = 42;
+				break;
+			}
+		}
+		return returnValue;
+	}
 }

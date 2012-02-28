@@ -18,8 +18,7 @@ namespace innerclasses
 			{
 				string a = "foo";
 				this._enclosing.print(a + ": " + a.Trim());
-				this._enclosing.print(((innerclasses.Node)this._enclosing._root)._next._next.ToString
-					());
+				this._enclosing.print(((innerclasses.Node)this._enclosing._root)._next._next.ToString());
 			}
 
 			private readonly AnonymousInnerClass4 _enclosing;

@@ -19,13 +19,11 @@ namespace events
 		{
 			add
 			{
-				_queryStarted = (System.EventHandler<QueryEventArgs>)System.Delegate.Combine(_queryStarted
-					, value);
+				_queryStarted = (System.EventHandler<QueryEventArgs>)System.Delegate.Combine(_queryStarted, value);
 			}
 			remove
 			{
-				_queryStarted = (System.EventHandler<QueryEventArgs>)System.Delegate.Remove(_queryStarted
-					, value);
+				_queryStarted = (System.EventHandler<QueryEventArgs>)System.Delegate.Remove(_queryStarted, value);
 			}
 		}
 
@@ -33,14 +31,12 @@ namespace events
 		{
 			add
 			{
-				_queryFinished = (System.EventHandler<QueryEventArgs>)System.Delegate.Combine(_queryFinished
-					, value);
+				_queryFinished = (System.EventHandler<QueryEventArgs>)System.Delegate.Combine(_queryFinished, value);
 				OnQueryFinishedListener();
 			}
 			remove
 			{
-				_queryFinished = (System.EventHandler<QueryEventArgs>)System.Delegate.Remove(_queryFinished
-					, value);
+				_queryFinished = (System.EventHandler<QueryEventArgs>)System.Delegate.Remove(_queryFinished, value);
 			}
 		}
 

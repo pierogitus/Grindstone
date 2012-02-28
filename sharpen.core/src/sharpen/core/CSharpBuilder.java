@@ -2164,7 +2164,7 @@ public class CSharpBuilder extends ASTVisitor {
 					defaultClause = current;
 					current.isDefault(true);
 				} else {
-					current.addExpression(mapExpression(sc.getExpression()));
+					current.addExpression(mapExpression(node.getExpression().resolveTypeBinding(), sc.getExpression()));
 				}
 			} else {
 				current = null;

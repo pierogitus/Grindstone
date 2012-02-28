@@ -17,8 +17,7 @@ namespace innerclasses
 
 			public void run()
 			{
-				innerclasses.AnonymousInnerClass6.print(innerclasses.AnonymousInnerClass6.Message
-					);
+				innerclasses.AnonymousInnerClass6.print(innerclasses.AnonymousInnerClass6.Message);
 			}
 		}
 
