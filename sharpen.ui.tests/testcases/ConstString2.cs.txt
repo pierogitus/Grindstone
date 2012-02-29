@@ -1,4 +1,4 @@
 public class ConstString2
 {
-	public static readonly string Message = "\tThis is an ex parrot!\n\tThis is parrot is no more!";
+	public static readonly string Message = "\tThis is an ex parrot!\n\t\"~99This is pa\\rrot is no more!\x54u\x4f\x0041\x0042\x4e";
 }

@@ -1984,9 +1984,58 @@ public class CSharpBuilder extends ASTVisitor {
 		if (value != null && value.length() == 0) {
 			pushExpression(new CSReferenceExpression("string.Empty"));
 		} else {
-			pushExpression(new CSStringLiteralExpression(node.getEscapedValue()));
+			pushExpression(new CSStringLiteralExpression(mapEscapeSequences(node.getEscapedValue())));
 		}
 		return false;
+	}
+	
+	public String mapEscapeSequences(String s){
+		StringBuilder sb = new StringBuilder();
+		StringBuilder currentOctal = new StringBuilder();
+		boolean inEscape = false;
+		for(char c : s.toCharArray()){
+			if(c == '\\'){
+				inEscape = !inEscape;
+				if(currentOctal.length() > 0){
+					sb.append("x" + Integer.toString(Integer.parseInt(currentOctal.toString(), 8), 16));
+					currentOctal = new StringBuilder();
+					inEscape = !inEscape;
+				}
+				sb.append(c);
+			}
+			else if(inEscape){
+				if(c == 'u' && sb.charAt(sb.length() - 1) == '\\' && currentOctal.length() == 0){
+					sb.append('x');
+					inEscape = false;
+				}
+				else if(Character.isLetter(c)){
+					if(currentOctal.length() > 0){
+						sb.append("x" + Integer.toString(Integer.parseInt(currentOctal.toString(), 8), 16));
+						currentOctal = new StringBuilder();
+					}
+					sb.append(c);
+					inEscape = false;
+				}
+				else if(Character.isDigit(c)){
+					currentOctal.append(c);
+				}
+				else{
+					if(currentOctal.length() > 0){
+						sb.append("x" + Integer.toString(Integer.parseInt(currentOctal.toString(), 8), 16));
+						currentOctal = new StringBuilder();
+					}
+					sb.append(c);
+					inEscape = false;
+				}
+			}
+			else{
+				sb.append(c);
+			}
+		}
+		if(inEscape && currentOctal.length() > 0){
+			sb.append("x" + Integer.toString(Integer.parseInt(currentOctal.toString(), 8), 16));
+		}
+		return sb.toString();
 	}
 
 	public boolean visit(CharacterLiteral node) {
