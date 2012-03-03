@@ -1,0 +1,10 @@
+<project name="build properties">
+	<property name="sharpen.workspace.dir" value="D:/TW/Grindstone/grindstone-test/LuceneTest/workspace" />
+	<property name="sharpen.workspace.TestBuild.dir" value="D:/TW/Grindstone/grindstone-test/LuceneTest/workspace/Lucene.net/java/Org" />
+	<property name="TestBuild.dir" value="D:/TW/Lucene.Net/Org" />
+	<property name="src.dir" value="D:/TW/Grindstone/lucene_3_5_0/src" />
+	<property name="jar.junit" value="D:/TW/Grindstone/lucene_3_5_0/lib/junit-4.7.jar" />
+	<property name="jar.ant" value="D:/TW/Grindstone/lucene_3_5_0/lib/ant-1.7.1.jar" />
+	<property name="jar.ant-junit" value="D:/TW/Grindstone/lucene_3_5_0/lib/ant-junit-1.7.1.jar" />
+	<property name="eclipse.home" value="C:/Files/Java/eclipse-jee-ganymede-SR2-win32/eclipse" />
+</project>

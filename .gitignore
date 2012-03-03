@@ -4,3 +4,5 @@ sharpen.core/bin/
 sharpen.ui.tests/bin-testcases/
 sharpen.ui.tests/bin/
 sharpen.ui/bin/
+LuceneTest/workspace
+LuceneTest/log.txt

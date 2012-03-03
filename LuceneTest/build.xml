@@ -1,0 +1,43 @@
+<project name="Lucene" default="sharpen">
+
+	<property name="project.name" value="Lucene" />
+	<import file="build-properties.xml" />
+	<import file="sharpen-common.xml" />
+		
+	<target name="sharpen" depends="init">
+		
+		<prepare-sharpen-workspace project="${project.name}" dir="${sharpen.workspace.dir}" fromdir="${src.dir}" />
+		
+		<sharpen workspace="${sharpen.workspace.dir}" resource="${project.name}/java">
+			<args>
+				<arg value="-pascalCase+"  />
+				<arg value="-organizeUsings" />
+				<arg value="-nativeTypeSystem" />
+				<arg value="-nativeInterfaces"  />
+
+				<arg value="-cp" />
+				<arg path="${jar.junit}" />
+				<arg value="-cp" />
+				<arg path="${jar.ant}" />
+				<arg value="-cp" />
+				<arg path="${jar.ant-junit}" />
+				<arg value="-srcFolder" />
+				<arg path="/test" />
+				<arg value="-srcFolder" />
+				<arg path="/test-framework/java" />
+				 
+				<arg value="-strategyScope" />
+				<arg value="RefactorInterfaceWithTypes" />
+				<arg value="." />
+			</args>
+		</sharpen>
+
+		<copy-sharpen-output fromdir="${sharpen.workspace.TestBuild.dir}" todir="${TestBuild.dir}" />
+	</target>
+	
+	<target name="init">
+		
+		<reset-dir dir="${sharpen.workspace.dir}" />
+		
+	</target>
+</project>
