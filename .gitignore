@@ -6,3 +6,7 @@ sharpen.ui.tests/bin/
 sharpen.ui/bin/
 LuceneTest/workspace
 LuceneTest/log.txt
+GrindstoneHelperLib/bin
+GrindstoneHelperLib/obj
+GrindstoneHelperLib/GrindstoneHelperLib.csproj.user
+GrindstoneHelperLib/GrindstoneHelperLib.suo

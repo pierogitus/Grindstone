@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{86021527-2F9E-4480-AB0E-D447D23C2E02}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>GrindstoneHelperLib</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>GrindstoneHelperLib</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Collections.cs" />
+    <Compile Include="IO\BufferedInputStream.cs" />
+    <Compile Include="IO\BufferedOutputStream.cs" />
+    <Compile Include="IO\ByteArrayInputStream.cs" />
+    <Compile Include="IO\ByteArrayOutputStream.cs" />
+    <Compile Include="IO\File.cs" />
+    <Compile Include="IO\FileInputStream.cs" />
+    <Compile Include="IO\FileOutputStream.cs" />
+    <Compile Include="IO\IFilenameFilter.cs" />
+    <Compile Include="IO\IInputStream.cs" />
+    <Compile Include="IO\InputStream.cs" />
+    <Compile Include="IO\IOutputStream.cs" />
+    <Compile Include="IO\OutputStream.cs" />
+    <Compile Include="IO\RandomAccessFile.cs" />
+    <Compile Include="IO\StreamAdaptor.cs" />
+    <Compile Include="Lang\IdentityHashCodeProvider.cs" />
+    <Compile Include="Lang\Reflect.cs" />
+    <Compile Include="Lang\Runnable.cs" />
+    <Compile Include="Lang\SimpleTypeReference.Silverlight.cs" />
+    <Compile Include="Lang\Thread.cs" />
+    <Compile Include="Lang\ThreadLocal.cs" />
+    <Compile Include="Lang\TypeReference.cs" />
+    <Compile Include="Lang\TypeReferenceLexer.cs" />
+    <Compile Include="Lang\TypeReferenceParser.cs" />
+    <Compile Include="Net\ServerSocket.cs" />
+    <Compile Include="Net\Socket.cs" />
+    <Compile Include="Net\SocketWrapper.cs" />
+    <Compile Include="Runtime.cs" />
+    <Compile Include="Text\DecimalFormat.cs" />
+    <Compile Include="Util\Arrays.cs" />
+    <Compile Include="Util\HashSet.cs" />
+    <Compile Include="Util\ISet.cs" />
+    <Compile Include="Util\Random.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+</Project>
